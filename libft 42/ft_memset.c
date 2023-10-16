@@ -22,5 +22,5 @@ void	*ft_memset(void *string, int valeur, size_t nombre)
 		temp++;
 		index++;
 	}
-	return (*temp);
+	return (string);
 }

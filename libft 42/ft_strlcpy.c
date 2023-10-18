@@ -6,43 +6,45 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:43:56 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/16 16:29:06 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:33:16 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *destination, const char *source, size_t taille)
 {
-	int	indexdest;
-	int	index;
+	size_t	index;
 
-	indexdest = ft_strlen(destination);
 	index = 0;
-	while (source[index] != '\0'
-		&& destination[indexdest + index + 1] < taille)
+	if (taille != 0)
 	{
-		destination[indexdest + index] = source[index];
+		while (source[index] && taille > 1)
+		{
+			destination[index] = source[index];
+			taille--;
+			index++;
+		}
+		destination[index] = '\0';
 	}
-	destination[indexdest + index] = '\0';
-	return (*destination);
+	while (source[index] != '\0')
+		index++;
+	return (index);
 }
-
 /*
-int main(void) {
-    char destination[10] = "This and ";
-    char source[5] = "that";
-    size_t taille = 15;
+#include <stdio.h>
+#include <string.h>
 
-    printf("Avant destination : %s\n", destination);
-    printf("Avant source : %s\n", source);
+size_t ft_strlcpy(char *destination, const char *source, size_t taille);
 
-    char result[15];
-    *result = ft_strlcpy(destination, source, taille);
+int main() {
+    char destination[20];
+    const char *source = "Hello, World!";
 
-    printf("Apres utilisation de la fonction : %s\n", result);
+    size_t result = ft_strlcpy(destination, source, 10);
 
-    return (0);
+    printf("Chaîne copiée : %s\n", destination);
+    printf("Nombre de caractères copiés : %zu\n", result);
+
+    return 0;
 }
 */

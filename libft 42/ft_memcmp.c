@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 15:20:39 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/16 15:20:42 by brclemen         ###   ########.fr       */
+/*   Created: 2023/10/18 12:03:54 by brclemen          #+#    #+#             */
+/*   Updated: 2023/10/18 12:03:56 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*temp;
-	int		index;
+	const unsigned char	*source1;
+	const unsigned char	*source2;
+	size_t				index;
 
-	temp = (unsigned char *)s;
+	source1 = (unsigned char *)s1;
+	source2 = (unsigned char *)s2;
 	index = 0;
-	while (n > index)
+	if (n == 0)
+		return (0);
+	while (index < n)
 	{
-		*temp = 0;
-		temp++;
+		if (source1[index] != source2[index])
+			return ((int)source1[index] - source2[index]);
 		index++;
 	}
+	return (0);
 }

@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 15:20:39 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/16 15:20:42 by brclemen         ###   ########.fr       */
+/*   Created: 2023/10/17 13:34:37 by brclemen          #+#    #+#             */
+/*   Updated: 2023/10/17 13:34:42 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	toupper( int character)
 {
-	char	*temp;
-	int		index;
-
-	temp = (unsigned char *)s;
-	index = 0;
-	while (n > index)
-	{
-		*temp = 0;
-		temp++;
-		index++;
-	}
+	if (character > 'a' && character < 'z')
+		return (c + 32);
+	return (c);
 }

@@ -9,6 +9,8 @@
 /*   Updated: 2023/10/16 15:40:49 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
+
 int	ft_strlen(const char *acompter)
 {
 	int	index;

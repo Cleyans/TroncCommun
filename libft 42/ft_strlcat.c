@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 15:02:01 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/17 11:33:20 by brclemen         ###   ########.fr       */
+/*   Created: 2023/10/17 10:49:47 by brclemen          #+#    #+#             */
+/*   Updated: 2023/10/17 11:33:14 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *string, int valeur, size_t nombre)
+size_t	ft_strlcat(char *destination, char *source, size_t taille)
 {
-	char	*temp;
-	int		index;
+	size_t	index;
+	size_t	destinationlen;
 
-	temp = (unsigned char *)string;
 	index = 0;
-	while (nombre > index)
+	destinationlen = 0;
+	while (destinationlen < taille && destination[destinationlen])
+		destinationlen++;
+	while (source[index] && (destinationlen + 1) < taille)
 	{
-		*temp = (unsigned char)valeur;
-		temp++;
+		destination[destinationlen + index] = source[index];
 		index++;
 	}
-	return (string);
+	destination[destinationlen + index] = '\0';
+	while (source[index] != '\0')
+		index++;
+	return (destinationlen + index);
 }

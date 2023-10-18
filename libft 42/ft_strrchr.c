@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 15:20:39 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/16 15:20:42 by brclemen         ###   ########.fr       */
+/*   Created: 2023/10/17 14:30:44 by brclemen          #+#    #+#             */
+/*   Updated: 2023/10/17 14:30:48 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strrchr(const char *string, int recherche)
 {
-	char	*temp;
-	int		index;
+	const char	*dernier;
 
-	temp = (unsigned char *)s;
-	index = 0;
-	while (n > index)
+	dernier = NULL;
+	while (*string != '\0')
 	{
-		*temp = 0;
-		temp++;
-		index++;
+		if (*string == recherche)
+			dernier = string;
+		string++;
 	}
+	return ((char *)dernier);
 }

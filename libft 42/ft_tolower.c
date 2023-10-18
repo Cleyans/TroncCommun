@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 15:20:39 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/16 15:20:42 by brclemen         ###   ########.fr       */
+/*   Created: 2023/10/17 13:46:38 by brclemen          #+#    #+#             */
+/*   Updated: 2023/10/17 13:46:42 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	tolower( int character)
 {
-	char	*temp;
-	int		index;
-
-	temp = (unsigned char *)s;
-	index = 0;
-	while (n > index)
-	{
-		*temp = 0;
-		temp++;
-		index++;
-	}
+	if (character > 'a' && character < 'z')
+		return (character - 32);
+	return (character);
 }

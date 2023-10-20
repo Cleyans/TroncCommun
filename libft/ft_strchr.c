@@ -11,17 +11,26 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_strchr(const char *string, int caractereRecherche)
+char	*ft_strchr(const char *s, int c)
 {
-	while (*string != '\0')
+	int	index;
+
+	index = 0;
+	if (s == NULL)
 	{
-		if (*string == caractereRecherche)
-		{
-			return ((char *)string);
-		}
-		string++;
+		while (s[index])
+			index++;
+		return ((char *)&s[index]);
 	}
-	if (caractereRecherche == '\0')
-		return ((char *)string);
+	while (s[index] != '\0')
+	{
+		if (s[index] == (char)c)
+		{
+			return ((char *)&s[index]);
+		}
+		s++;
+	}
+	if (s[index] == (char)c)
+		return ((char *)&s[index]);
 	return (NULL);
 }

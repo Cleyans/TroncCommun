@@ -13,7 +13,7 @@
 
 int	ft_strlen(const char *acompter)
 {
-	int	index;
+	size_t	index;
 
 	index = 0;
 	while (acompter[index] != '\0')

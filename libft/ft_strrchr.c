@@ -11,27 +11,24 @@
 /* ************************************************************************** */
 #include "libft.h"  
 
-char    *ft_strrchr(const char *string, int recherche)
+char	*ft_strrchr(const char *string, int recherche)
 {
-    const char  *dernier;
-    size_t  index;
+	const char	*dernier;
+	size_t		index;
 
-    dernier = NULL;
-    index = 0;
-	if (recherche == '\0')
+	dernier = NULL;
+	index = 0;
+	if ((char)recherche == '\0')
 	{
 		while (string[index])
 			index++;
-		return (char *)&string[index];
+		return ((char *)&string[index]);
 	}
-    while (string[index])
-    {
-        if (string[index] == recherche)
-        {
-            dernier = &string[index];
-        }
-        index++;
-    }
-
-    return (char *)dernier;
+	while (string[index])
+	{
+		if (string[index] == (char)recherche)
+			dernier = &string[index];
+		index++;
+	}
+	return ((char *)dernier);
 }

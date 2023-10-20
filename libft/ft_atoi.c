@@ -3,35 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brclemen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:36:59 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/18 14:37:01 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:53:54 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-	size_t	index;
-	int		sign;
-	int		result;
+	int	index;
+	int	resultat;
+	int	sign;
 
 	index = 0;
+	resultat = 0;
 	sign = 1;
-	result = 0;
-	while (nptr[index] == '-' || nptr[index] == '+')
+	while (str[index] == ' ' || (str[index] >= '\t' && str[index] <= '\r'))
+		index++;
+	if (str[index] == '-')
 	{
-		if (nptr[index] == '-')
-		{
-			sign *= -1;
-		}
+		sign = -1;
 		index++;
 	}
-	while (nptr[index] >= '0' && nptr[index] <= '9')
+	else if (str[index] == '+')
+		index++;
+	while (str[index] != '\0')
 	{
-		result = result * 10 + (nptr[index] - '0');
+		if (str[index] >= '0' && str[index] <= '9')
+			resultat = resultat * 10 + str[index] - '0';
+		else
+			break ;
 		index++;
 	}
-	return (result * sign);
+	return (sign * resultat);
 }

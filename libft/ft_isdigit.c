@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:55:18 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/17 17:54:36 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:27:22 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_isdigit(int c)

@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:08:55 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/17 17:53:49 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:27:07 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_isalnum(int c)

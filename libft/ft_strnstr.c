@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 13:19:17 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/20 15:32:17 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:32:20 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)

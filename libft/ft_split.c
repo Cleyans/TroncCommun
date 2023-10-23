@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brclemen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:38:05 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/19 15:38:07 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:31:27 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-#include <stdio.h>     // l'enfer sur terre //
-#include <stdlib.h>
+
+#include "libft.h"   // l'enfer sur terre //
 
 static char *extrairemots(const char *s, char c, size_t *start);
 static size_t nbmots(const char *s, char c);

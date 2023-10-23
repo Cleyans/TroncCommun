@@ -6,11 +6,11 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:31:26 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/19 12:59:11 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:29:10 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
-#include <stddef.h>
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

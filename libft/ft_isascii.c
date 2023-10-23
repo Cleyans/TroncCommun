@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:15:37 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/17 17:54:20 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:27:19 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_isascii(int c)

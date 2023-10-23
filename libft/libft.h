@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:42:00 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/17 18:06:31 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:40:37 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -26,6 +27,7 @@ int		ft_isprint(int c); // Vérifie si le caractère c est imprimable (affichabl
 int		ft_atoi(const char *nptr); // Convertit une chaîne de caractères en un entier (int). //
 char	*strdup(const char *s); // Crée une copie allouée dynamiquement de la chaîne s. //
 char **ft_split(char const *s, char c);
+char	*ft_itoa(int n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);  // Renvoie une sous-chaîne extraite de s, à partir de l'indice start et d'une longueur len. //
 void	*ft_calloc(size_t nmemb, size_t size); // Alloue de la mémoire pour un tableau de nmemb éléments, chacun de taille size octets, et initialise la mémoire allouée à zéro. //
 void	*ft_memcpy( void *dest, const void *src, size_t n); // Copie n octets de mémoire source src vers la mémoire de destination dest. //

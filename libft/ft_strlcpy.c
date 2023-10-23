@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:43:56 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/17 11:33:16 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:32:08 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 size_t	ft_strlcpy(char *destination, const char *source, size_t taille)

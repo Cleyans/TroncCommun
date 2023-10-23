@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:36:59 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/20 16:53:54 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:27:12 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_atoi(const char *str)

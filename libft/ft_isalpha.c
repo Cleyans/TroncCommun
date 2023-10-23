@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:44:15 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/17 17:54:08 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:27:17 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_isalpha(int c)

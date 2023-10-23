@@ -6,9 +6,10 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:47:15 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/17 17:55:21 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:27:23 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_isprint(int c)

@@ -12,9 +12,6 @@
 
 #include "libft.h"
 
-#include <stdio.h>
-#include <string.h>
-
 static int	digit(int n)
 {
 	int	count;
@@ -35,32 +32,32 @@ static int	digit(int n)
 	return (count);
 }
 
-static char	*convertion(char *string, int n, int count)
+static char	*convertion(char *resultat, int n, int nlen)
 {
 	int		index;
 	int		index2;
 
 	index = 0;
-	index2 = count - 1;
+	index2 = nlen - 1;
 	if (n < 0)
 	{
 		n = -n;
-		string[0] = '-';
-		count = count -1;
+		resultat[0] = '-';
+		nlen = nlen -1;
 	}
-	while (count > 0)
+	while (nlen > 0)
 	{
-		if (n >= 0)
+		if (n > 9)
 		{
-			string[index2 - index] = n % 10 + 48;
+			resultat[index2 - index] = n % 10 + 48;
 			n = n / 10;
 		}
 		else
-			string[index2 - index] = n + 48;
-		count--;
+			resultat[index2 - index] = n + 48;
+		nlen--;
 		index++;
 	}
-	return (string);
+	return (resultat);
 }
 
 char	*ft_itoa(int n)

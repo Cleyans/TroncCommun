@@ -10,31 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int	nbdigit(int n)
-{
-	int	count;
-
-	count = 0;
-	if (n < 0 && n > -2147483647)
-	{
-		count++;
-		n = -n;
-	}
-	else if (n == 0)
-		return (1);
-	while (n >= 1)
-	{
-		n /= 10;
-		count++;
-	}
-	return (count);
-}
-
-void ft_putint(unsigned int nb, size_t *index)
+void ft_putint(int nb, size_t *index)
 {
     char *temp;
     temp = ft_itoa(nb);
     ft_putstr(temp, index);
 }
+
+//%u

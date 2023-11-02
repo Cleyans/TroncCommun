@@ -5,17 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 13:13:48 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/31 15:22:41 by brclemen         ###   ########.fr       */
+/*   Created: 2023/11/02 17:03:09 by brclemen          #+#    #+#             */
+/*   Updated: 2023/11/02 17:03:12 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void ft_putchar(char c, size_t *index)
 {
 	write(1, &c, 1);
 	(*index)++;
+}
+
+void ft_putpercent(size_t *index)
+{
+	ft_putchar('%', index);
 }
 
 void ft_putstr(char *str, size_t *index)
@@ -27,6 +32,5 @@ void ft_putstr(char *str, size_t *index)
 	{
 		ft_putchar(str[i], index);
 		i++;
-		(*index)++;
 	}
 }

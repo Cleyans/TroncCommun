@@ -6,31 +6,39 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:03:09 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/02 17:03:12 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/03 22:29:55 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_putchar(char c, size_t *index)
+void	ft_putchar(char c, size_t *index)
 {
 	write(1, &c, 1);
 	(*index)++;
 }
 
-void ft_putpercent(size_t *index)
+void	ft_putpercent(size_t *index)
 {
 	ft_putchar('%', index);
 }
 
-void ft_putstr(char *str, size_t *index)
+void	ft_putstr(char *str, size_t *index)
 {
-	int i;
+	size_t	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		ft_putchar(str[i], index);
 		i++;
 	}
+}
+
+void	ft_printstr(char *str, size_t *index)
+{
+	if (str == NULL)
+		ft_putstr("(null)", index);
+	else
+		ft_putstr(str, index);
 }

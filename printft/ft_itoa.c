@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_strlcpy(char *destination, const char *source, size_t taille)
+static size_t	ft_strlcpy(char *destination, const char *source, size_t taille)
 {
 	size_t	index;
 

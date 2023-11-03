@@ -6,22 +6,30 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:22:29 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/02 17:04:47 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/03 22:28:36 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_format(va_list va, char *str, size_t *index)
+void	ft_format(va_list args, char *str, size_t *index)
 {
 	if (*str == 'c')
-		ft_putchar(va_arg(va, int), index);
+		ft_putchar(va_arg(args, int), index);
 	else if (*str == 's')
-		ft_putstr(va_arg(va, char *), index);
+		ft_printstr(va_arg(args, char *), index);
 	else if (*str == 'i' || *str == 'd')
-		ft_putint(va_arg(va, int), index);
+		ft_putint(va_arg(args, int), index);
 	else if (*str == '%')
 		ft_putpercent(index);
+	else if (*str == 'u')
+		ft_putunsigned(va_arg(args, unsigned int), index);
+	else if (*str == 'x')
+		ft_print_hex(va_arg(args, unsigned int), *str, index);
+	else if (*str == 'X')
+		ft_print_hex(va_arg(args, unsigned int), *str, index);
+	else if (*str == 'p')
+		ft_print_ptr(va_arg(args, unsigned long), index);
 }
 
 int	ft_printf(const char *str, ...)

@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:01:42 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/23 11:31:35 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:16:16 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strdup(const char *s)
 	char		*dest;
 	size_t		index;
 
-	index = strlen(s);
+	index = ft_strlen(s);
 	dest = malloc(index + 1 * sizeof(char));
 	if (dest == NULL)
 		return (NULL);

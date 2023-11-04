@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:12:58 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/03 21:41:26 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:32:16 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_putpercent(size_t *index);
 void	ft_printstr(char *str, size_t *index);
 void	ft_putunsigned(unsigned int nb, size_t *index);
 void	ft_print_hex(unsigned int nb, char format, size_t *index);
-void	ft_print_ptr(unsigned long nb, size_t *index);
+void	ft_print_ptr(void *nb, size_t *index);
 int		nbdigit(int n);
 int		ft_printf(const char *str, ...);
 

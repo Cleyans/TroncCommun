@@ -6,13 +6,13 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:37:17 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/23 11:32:01 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:59:01 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	total_len;
 	char	*result;

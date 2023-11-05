@@ -6,16 +6,13 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:42:00 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/04 15:17:25 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:10:48 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
-# include <stdio.h>
-# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 

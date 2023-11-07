@@ -26,7 +26,7 @@ void	ft_format(va_list args, char *str, size_t *index);
 void	ft_putstr(char *str, size_t *index);
 void	ft_putpercent(size_t *index);
 void	ft_printstr(char *str, size_t *index);
-void	ft_print_hex(unsigned int nb, char format, size_t *index);
+void	ft_print_hex(unsigned long long nb, char format, size_t *index);
 void	ft_print_ptr(void *nb, size_t *index);
 int		nbdigit(int n);
 int		ft_printf(const char *str, ...);

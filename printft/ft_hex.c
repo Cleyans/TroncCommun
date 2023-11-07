@@ -14,14 +14,15 @@
 
 //HEX
 
-static void	ft_hex_conversion(unsigned long nb, char *hex_base, size_t *index)
+static void	ft_hex_conversion(unsigned long long nb, char *hex_base,
+size_t *index)
 {
 	if (nb / 16)
 		ft_hex_conversion(nb / 16, hex_base, index);
 	ft_putchar(hex_base[nb % 16], index);
 }
 
-void	ft_print_hex(unsigned int nb, char format, size_t *index)
+void	ft_print_hex(unsigned long long nb, char format, size_t *index)
 {
 	char	*hex_base;
 
@@ -32,7 +33,8 @@ void	ft_print_hex(unsigned int nb, char format, size_t *index)
 }
 //PTR
 
-static void	ft_ptr_conversion(unsigned long nb, char *hex_base, size_t *index)
+static void	ft_ptr_conversion(unsigned long long nb, char *hex_base,
+size_t *index)
 {
 	if (nb / 16)
 		ft_hex_conversion(nb / 16, hex_base, index);
@@ -41,10 +43,10 @@ static void	ft_ptr_conversion(unsigned long nb, char *hex_base, size_t *index)
 
 void	ft_print_ptr(void *nb, size_t *index)
 {
-	char				*hex_base;
-	unsigned long		nb2;
+	char					*hex_base;
+	unsigned long long		nb2;
 
-	nb2 = (unsigned long)nb;
+	nb2 = (unsigned long long)nb;
 	if (nb == 0)
 		ft_putstr("(nil)", index);
 	else

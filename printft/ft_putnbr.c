@@ -1,39 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_num.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 15:26:51 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/03 17:34:45 by brclemen         ###   ########.fr       */
+/*   Created: 2023/11/07 10:40:16 by brclemen          #+#    #+#             */
+/*   Updated: 2023/11/07 10:50:57 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putint(int nb, size_t *index)
+void	ft_putnbr(int n, size_t *index)
 {
-	char	*temp;
-
-	temp = ft_itoa(nb);
-	ft_putstr(temp, index);
-	free(temp);
-}
-
-void	ft_putunsigned(unsigned int nb, size_t *index)
-{
-	char	*temp;
-
-	if (nb == 0)
+	if (n == -2147483648)
 	{
-		write(1, "0", 1);
-		(*index)++;
+		ft_putstr("-2147483648", index);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar('-', index);
+		n = -n;
+	}
+	if (n <= 9)
+	{
+		ft_putchar(n + '0', index);
 	}
 	else
 	{
-		temp = ft_utoa(nb);
-		ft_putstr(temp, index);
-		free(temp);
+		ft_putnbr(n / 10, index);
+		ft_putnbr(n % 10, index);
+	}
+}
+
+void	ft_unsignedputnbr(unsigned int n, size_t *index)
+{
+	if (n <= 9)
+	{
+		ft_putchar(n + '0', index);
+	}
+	else
+	{
+		ft_putnbr(n / 10, index);
+		ft_putnbr(n % 10, index);
 	}
 }

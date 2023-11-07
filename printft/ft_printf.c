@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:22:29 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/04 10:36:13 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:47:48 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	ft_format(va_list args, char *str, size_t *index)
 	else if (*str == 's')
 		ft_printstr(va_arg(args, char *), index);
 	else if (*str == 'i' || *str == 'd')
-		ft_putint(va_arg(args, int), index);
+		ft_putnbr(va_arg(args, int), index);
 	else if (*str == '%')
 		ft_putpercent(index);
 	else if (*str == 'u')
-		ft_putunsigned(va_arg(args, unsigned int), index);
+		ft_unsignedputnbr(va_arg(args, unsigned int), index);
 	else if (*str == 'x')
 		ft_print_hex(va_arg(args, unsigned int), *str, index);
 	else if (*str == 'X')

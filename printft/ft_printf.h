@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:12:58 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/04 10:32:16 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:49:30 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@
 # include <stdio.h>
 # include <limits.h>
 
-char	*ft_itoa(int n);
-char	*ft_utoa(unsigned int n);
+void	ft_putnbr(int n, size_t *index);
+void	ft_unsignedputnbr(unsigned int n, size_t *index);
 void	ft_putchar(char c, size_t *index);
 void	ft_format(va_list args, char *str, size_t *index);
 void	ft_putstr(char *str, size_t *index);
-void	ft_putint(int nb, size_t *index);
 void	ft_putpercent(size_t *index);
 void	ft_printstr(char *str, size_t *index);
-void	ft_putunsigned(unsigned int nb, size_t *index);
 void	ft_print_hex(unsigned int nb, char format, size_t *index);
 void	ft_print_ptr(void *nb, size_t *index);
 int		nbdigit(int n);

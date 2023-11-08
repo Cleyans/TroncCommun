@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:22:29 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/07 14:05:09 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:02:56 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,21 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(args);
 	return (index);
+}
+int main(void)
+{
+    char c = 'A';
+    char string[] = "Bonjour";
+    int integer = 42;
+    unsigned int unsignedInteger = 12345;
+    int hexadecimal = 12345;
+    void *pointer = &integer;
+
+	int res1;
+	int res2;
+
+    res1 = printf("string normal %c frer  %s rerer %i  rere %d  rer %u  rer %xre%X re %p ff'%%\n", c, string, integer, integer, unsignedInteger, hexadecimal, hexadecimal, pointer);
+	res2 = ft_printf("string normal %c frer  %s rerer %i  rere %d  rer %u  rer %xre%X re %p ff'%%\n", c, string, integer, integer, unsignedInteger, hexadecimal, hexadecimal, pointer);
+
+	printf("printf normal %d \n le mien %d\n", res1, res2);
 }

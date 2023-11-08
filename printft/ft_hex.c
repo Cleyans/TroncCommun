@@ -12,8 +12,6 @@
 
 #include "ft_printf.h"
 
-//HEX
-
 static void	ft_hex_conversion(unsigned long long nb, char *hex_base,
 size_t *index)
 {
@@ -31,15 +29,6 @@ void	ft_print_hex(unsigned long long nb, char format, size_t *index)
 		hex_base = "0123456789ABCDEF";
 	ft_hex_conversion(nb, hex_base, index);
 }
-//PTR
-
-static void	ft_ptr_conversion(unsigned long long nb, char *hex_base,
-size_t *index)
-{
-	if (nb / 16)
-		ft_hex_conversion(nb / 16, hex_base, index);
-	ft_putchar(hex_base[nb % 16], index);
-}
 
 void	ft_print_ptr(void *nb, size_t *index)
 {
@@ -53,6 +42,6 @@ void	ft_print_ptr(void *nb, size_t *index)
 	{
 		hex_base = "0123456789abcdef";
 		ft_putstr("0x", index);
-		ft_ptr_conversion(nb2, hex_base, index);
+		ft_hex_conversion(nb2, hex_base, index);
 	}
 }

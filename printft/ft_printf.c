@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:22:29 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/08 14:02:56 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:33:03 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_format(va_list args, char *str, size_t *index)
 		ft_print_hex(va_arg(args, unsigned int), *str, index);
 	else if (*str == 'p')
 		ft_print_ptr(va_arg(args, void *), index);
+	else
+		ft_putchar('%', index);
 }
 
 int	ft_printf(const char *str, ...)

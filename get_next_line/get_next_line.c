@@ -69,15 +69,17 @@ char	*get_next_line(int fd)
 {
 	static char	*reserve;
 	char	*ligne;
+	int count_read; // train
 	reserve = NULL;
 	ligne = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	ft_read(fd, reserve);
+	count_read = ft_read(fd, reserve);
 	if (!reserve)
 		return (NULL);
 	if (ft_strchr(reserve, '\n') != NULL)
 	{
+		ligne = malloc(sizeof(char) * (count_read + 1));
 		ft_extraire(reserve, ligne);
 		reserve = ft_clear(reserve);
 	}

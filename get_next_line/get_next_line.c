@@ -6,79 +6,80 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:43:18 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/09 16:07:31 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:59:01 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <get_next_line.h>
-// read, malloc, free
-size_t  ft_strlen(char *str)
-{
-    size_t index;
+#include "get_next_line.h"
 
-    index = 0;
-    while(str[index])
-        index++;
-    return (index);
+char	*ft_clear(char *str)
+{
+	char	*next;
+	size_t index;
+
+	index = 0;
+	next = NULL;
+	while (str[index] && str[index] != '\n')
+		index++;
+	if (str[index] == '\n')
+		index++;
+	next = ft_strjoin(next, &str[index]);
+	free(str);
+	return (next);
 }
 
-int verif_retour(char *str)
+void	ft_extraire(char *reserve, char *ligne)
 {
-    size_t index;
+	size_t	index;
 
-    index = 0;
-    while(str[index])
-    {
-        if (str[index] == '\n')
-            return (1);
-        index++;
-    }
-    return (0);
+	index = 0;
+	if (!reserve)
+		return ;
+	while (reserve[index] && reserve[index] != '\n')
+		index++;
+	ligne = malloc(sizeof(char) * (index + 2));
+	if (!ligne)
+		return ;
+	index = 0;
+	while(reserve[index] && reserve[index] != '\0')
+	{
+		ligne[index] = reserve[index];
+		index++;
+	}
+	if (reserve[index] == '\n')
+		ligne[index] = reserve[index];
+	free(ligne);
 }
 
-void    *ligne_save(char *reserve, char *ligne)
+int	ft_read(int fd, char *str)
 {
-    size_t index;
-
-    index = 0;
-    while (reserve[index] != '\n')
-    {
-        ligne[index] = reserve[index];
-        index++;
-    }
-    if (reserve[index] == '\n')
-    {
-        ligne[index] = reserve[index];
-        index++;
-    }
+	char	*tmp;
+	int	i;
+	
+	tmp = str;
+	tmp = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!tmp)
+		return (0);
+	i = read(fd, tmp, BUFFER_SIZE);
+	free(tmp);
+	return (i);
 }
 
-void    clean_ligne(char *str, size_t count)
+char	*get_next_line(int fd)
 {
-    size_t index;
-
-    index = 0;
-    while(count > 0)
-    {
-        free(str[index]);
-        index++;
-    }
-}
-
-char    *get_next_line(int fd)
-{
-    static char *reserve;
-    char *ligne;
-    int retour;
-
-    retour = 0;
-    reserve = malloc(sizeof(char *) * BUFFER_SIZE + 1);
-    while (retour < 1)
-    {
-        read(fd, reserve, BUFFER_SIZE);
-        retour = verif_retour(reserve);
-    }
-    ligne_save(reserve, ligne);
-    cleanligne(reserve, ft_strlen(reserve) - ft_strlen(ligne));
-    return (ligne);
+	static char	*reserve;
+	char	*ligne;
+	reserve = NULL;
+	ligne = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (NULL);
+	ft_read(fd, reserve);
+	if (!reserve)
+		return (NULL);
+	if (ft_strchr(reserve, '\n') != NULL)
+	{
+		ft_extraire(reserve, ligne);
+		reserve = ft_clear(reserve);
+	}
+	return (ligne);
 }

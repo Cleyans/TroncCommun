@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:42:18 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/10 15:59:03 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:49:50 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
-int ft_read(int fd, char *str);
-char	*ft_clear(char *str);
-
-void	ft_extraire(char *reserve, char *ligne);
+char	*ft_strjoin(char *stash, char *buff);
+char	*ft_strchr(char *s, int c);
+char	*ft_ligne_suivante(char *reserve);
+char	*ft_extraire_ligne(char *reserve);
+char	*ft_read(int fd, char *reserve);
 
 size_t	ft_strlen(char *str);
 

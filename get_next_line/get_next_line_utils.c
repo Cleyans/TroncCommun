@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:43:23 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/10 15:59:02 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:50:01 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,70 +16,75 @@ size_t	ft_strlen(char *str)
 {
 	size_t	index;
 
+	if (!str)
+		return (0);
 	index = 0;
 	while (str[index])
 		index++;
 	return (index);
 }
 
-static void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strjoin(char *stash, char *buff)
 {
-	unsigned char	*d;
-	unsigned char	*s;
-	size_t			i;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
-	s = (unsigned char *)src;
-	d = (unsigned char *)dest;
-	i = 0;
-	if (dest == NULL && src == NULL)
-		return (NULL);
-	while (n > i)
+	if (!stash)
 	{
-		d[i] = s[i];
+		stash = (char *)malloc(1 * sizeof(char));
+		stash[0] = '\0';
+	}
+	if (!stash || !buff)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen(stash) + ft_strlen(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (stash)
+		while (stash[++i] != '\0')
+			str[i] = stash[i];
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[ft_strlen(stash) + ft_strlen(buff)] = '\0';
+	free(stash);
+	return (str);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
 		i++;
 	}
-	return (d);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	size_t	total_len;
-	char	*result;
-
-	if (s1 == NULL && s2 == NULL)
-		return (NULL);
-	total_len = (ft_strlen((char *)s1) + ft_strlen((char *)s2));
-	result = (char *)malloc(total_len + 1);
-	if (result == NULL)
-		return (NULL);
-	if (s1 != NULL)
-		ft_memcpy(result, s1, ft_strlen((char *)s1));
-	if (s2 != NULL)
-		ft_memcpy(result + ft_strlen((char *)s1), s2, ft_strlen((char *)s2));
-	result[total_len] = '\0';
-	return (result);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	index;
-
-	index = 0;
-	if (s == NULL)
-	{
-		while (s[index])
-			index++;
-		return ((char *)&s[index]);
-	}
-	while (s[index] != '\0')
-	{
-		if (s[index] == (char)c)
-		{
-			return ((char *)&s[index]);
-		}
-		s++;
-	}
-	if (s[index] == (char)c)
-		return ((char *)&s[index]);
 	return (NULL);
+}
+
+char	*ft_strcpyy(char *dst, const char *src)
+{
+	int		i;
+
+	i = 0;
+	while (src[i] && src[i] != '\n')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (src[i] == '\n')
+	{
+		dst[i] = '\n';
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

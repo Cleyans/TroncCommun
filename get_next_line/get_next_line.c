@@ -5,83 +5,103 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 11:43:18 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/10 15:59:01 by brclemen         ###   ########.fr       */
+/*   Created: 2023/11/11 18:01:06 by brclemen          #+#    #+#             */
+/*   Updated: 2023/11/11 18:01:06 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_clear(char *str)
+char	*get_next_line(int fd)
 {
-	char	*next;
-	size_t index;
+	static char	*reserve;
+	char		*ligne;
 
-	index = 0;
-	next = NULL;
-	while (str[index] && str[index] != '\n')
-		index++;
-	if (str[index] == '\n')
-		index++;
-	next = ft_strjoin(next, &str[index]);
-	free(str);
-	return (next);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	reserve = ft_read(fd, reserve);
+	if (!reserve)
+		return (NULL);
+	ligne = ft_extraire_ligne(reserve);
+	reserve = ft_ligne_suivante(reserve);
+	return (ligne);
 }
 
-void	ft_extraire(char *reserve, char *ligne)
+char	*ft_read(int fd, char *reserve)
 {
-	size_t	index;
+	int		verif_return;
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!str)
+		return (NULL);
+	verif_return = 1;
+	while (ft_strchr(reserve, '\n') == NULL && verif_return != 0)
+	{
+		verif_return = read(fd, str, BUFFER_SIZE);
+		if (verif_return == -1)
+		{
+			free(reserve);
+			free(str);
+			return (NULL);
+		}
+		str[verif_return] = '\0';
+		reserve = ft_strjoin(reserve, str);
+	}
+	free(str);
+	return (reserve);
+}
+
+char	*ft_extraire_ligne(char *reserve)
+{
+	char	*ligne;
+	int		index;
 
 	index = 0;
-	if (!reserve)
-		return ;
+	if (!reserve[index])
+		return (NULL);
 	while (reserve[index] && reserve[index] != '\n')
 		index++;
-	ligne = malloc(sizeof(char) * (index + 2));
+	ligne = (char *)malloc(sizeof(char) * index + 2);
 	if (!ligne)
-		return ;
+		return (NULL);
 	index = 0;
-	while(reserve[index] && reserve[index] != '\0')
+	while (reserve[index] && reserve[index] != '\n')
 	{
 		ligne[index] = reserve[index];
 		index++;
 	}
 	if (reserve[index] == '\n')
-		ligne[index] = reserve[index];
-	free(ligne);
-}
-
-int	ft_read(int fd, char *str)
-{
-	char	*tmp;
-	int	i;
-	
-	tmp = str;
-	tmp = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!tmp)
-		return (0);
-	i = read(fd, tmp, BUFFER_SIZE);
-	free(tmp);
-	return (i);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*reserve;
-	char	*ligne;
-	int count_read; // train
-	reserve = NULL;
-	ligne = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
-	count_read = ft_read(fd, reserve);
-	if (!reserve)
-		return (NULL);
-	if (ft_strchr(reserve, '\n') != NULL)
 	{
-		ligne = malloc(sizeof(char) * (count_read + 1));
-		ft_extraire(reserve, ligne);
-		reserve = ft_clear(reserve);
+		ligne[index] = '\n';
+		index++;
 	}
+	ligne[index] = '\0';
 	return (ligne);
+}
+
+char	*ft_ligne_suivante(char *reserve)
+{
+	char	*suivant;
+	int		index;
+	int		index_suivant;
+
+	index = 0;
+	index_suivant = 0;
+	while (reserve[index] && reserve[index] != '\n')
+		index++;
+	if (!reserve[index])
+	{
+		free(reserve);
+		return (NULL);
+	}
+	suivant = (char *)malloc(sizeof(char) * ft_strlen(reserve) - index + 1);
+	if (!suivant)
+		return (NULL);
+	index++;
+	while (reserve[index])
+		suivant[index_suivant++] = reserve[index++];
+	suivant[index_suivant] = '\0';
+	free(reserve);
+	return (suivant);
 }

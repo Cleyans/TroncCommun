@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:43:23 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/13 16:50:01 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:08:43 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,4 @@ char	*ft_strchr(char *s, int c)
 		i++;
 	}
 	return (NULL);
-}
-
-char	*ft_strcpyy(char *dst, const char *src)
-{
-	int		i;
-
-	i = 0;
-	while (src[i] && src[i] != '\n')
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	if (src[i] == '\n')
-	{
-		dst[i] = '\n';
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
 }

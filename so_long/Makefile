@@ -11,7 +11,7 @@ LIBMLX 		= $(MLX)/libmlx42.a
 FT			= Libft
 LIBFT		= $(FT)/libft.a
 
-SOURCE := so_long.c
+SOURCE := so_long.c map.c
 OBJ 	= $(SOURCE:.c=.o)
 
 all: $(NAME)
@@ -34,6 +34,7 @@ clean:
 fclean: clean
 		make clean -C $(MLX)
 		rm -rf $(NAME)
+		rm -rf $(OBJ)
 
 re: fclean all
 

@@ -15,6 +15,11 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 5
+# endif
 
 typedef struct s_list
 {
@@ -71,5 +76,15 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 void	ft_lstclear(t_list **lst, void (*del)(void	*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+char	*get_next_line(int fd);
+char	*ft_read(int fd, char *reserve);
+char	*ft_extraire_ligne(char *reserve);
+char	*ft_ligne_suivante(char *reserve);
+int ft_strchr_gnl(const char *s, char c);
+unsigned int    ft_strlen_gnl(const char *str);
+char    *ft_strdup_gnl(const char *s1);
+char    *ft_strjoin_gnl(char *s1, char const *s2);
+
 
 #endif

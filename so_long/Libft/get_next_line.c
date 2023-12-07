@@ -1,107 +1,98 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:07:06 by brclemen          #+#    #+#             */
-/*   Updated: 2023/11/13 17:07:06 by brclemen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
+
+static char	*get_line(char *backup)
+{
+	int		len;
+	int		x;
+	char	*line;
+
+	len = 0;
+	if (*backup == '\0')
+		return (NULL);
+	while (backup[len] && backup[len] != '\n')
+		len++;
+	if (backup[len] == '\n')
+		len++;
+	line = malloc(sizeof(char) * len + 1);
+	if (!line)
+		return (NULL);
+	x = 0;
+	while (x < len)
+	{
+		line[x] = backup[x];
+		x++;
+	}
+	line[x] = '\0';
+	return (line);
+}
+
+static char	*get_backup(char *backup)
+{
+	char	*str;
+	int		start;
+	int		i;
+
+	start = 0;
+	while (backup[start] && backup[start] != '\n')
+		start++;
+	if (backup[start] == '\n')
+		start++;
+	if (backup[start] == '\0')
+	{
+		free(backup);
+		return (NULL);
+	}
+	str = malloc(sizeof(char) * (ft_strlenn(backup) - start + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (backup[start])
+		str[i++] = backup[start++];
+	str[i] = '\0';
+	free(backup);
+	return (str);
+}
+
+static char	*read_line(char *backup, int fd)
+{
+	int		byte;
+	char	*buff;
+
+	buff = malloc(BUFFER_SIZE + 1 * sizeof(char));
+	if (!buff)
+		return (NULL);
+	byte = 1;
+	while (byte > 0 && ft_index(backup, '\n') == -1)
+	{
+		byte = read(fd, buff, BUFFER_SIZE);
+		if (byte == 0)
+			break ;
+		if (byte == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[byte] = '\0';
+		backup = ft_strjoinn(backup, buff);
+	}
+	free(buff);
+	return (backup);
+}
 
 char	*get_next_line(int fd)
 {
-	static char	*reserve;
-	char		*ligne;
+	static char	*backup;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	reserve = ft_read(fd, reserve);
-	if (!reserve)
-		return (NULL);
-	ligne = ft_extraire_ligne(reserve);
-	reserve = ft_ligne_suivante(reserve);
-	return (ligne);
-}
-
-char	*ft_read(int fd, char *reserve)
-{
-	int		verif_return;
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!str)
-		return (NULL);
-	verif_return = 1;
-	while (ft_strchr_gnl(reserve, '\n') == 0 && verif_return != 0)
 	{
-		verif_return = read(fd, str, BUFFER_SIZE);
-		if (verif_return == -1)
-		{
-			free(reserve);
-			free(str);
-			return (NULL);
-		}
-		str[verif_return] = '\0';
-		reserve = ft_strjoin_gnl(reserve, str);
-	}
-	free(str);
-	return (reserve);
-}
-
-char	*ft_extraire_ligne(char *reserve)
-{
-	char	*ligne;
-	int		index;
-
-	index = 0;
-	if (!reserve[index])
-		return (NULL);
-	while (reserve[index] && reserve[index] != '\n')
-		index++;
-	ligne = (char *)malloc(sizeof(char) * index + 2);
-	if (!ligne)
-		return (NULL);
-	index = 0;
-	while (reserve[index] && reserve[index] != '\n')
-	{
-		ligne[index] = reserve[index];
-		index++;
-	}
-	if (reserve[index] == '\n')
-	{
-		ligne[index] = '\n';
-		index++;
-	}
-	ligne[index] = '\0';
-	return (ligne);
-}
-
-char	*ft_ligne_suivante(char *reserve)
-{
-	char	*suivant;
-	int		index;
-	int		index_suivant;
-
-	index = 0;
-	index_suivant = 0;
-	while (reserve[index] && reserve[index] != '\n')
-		index++;
-	if (!reserve[index])
-	{
-		free(reserve);
+		exit(1);
 		return (NULL);
 	}
-	suivant = (char *)malloc(sizeof(char) * ft_strlen_gnl(reserve) - index + 1);
-	if (!suivant)
+	backup = read_line(backup, fd);
+	if (!backup)
 		return (NULL);
-	index++;
-	while (reserve[index])
-		suivant[index_suivant++] = reserve[index++];
-	suivant[index_suivant] = '\0';
-	free(reserve);
-	return (suivant);
+	line = get_line(backup);
+	backup = get_backup(backup);
+	return (line);
 }

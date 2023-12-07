@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:40:42 by brclemen          #+#    #+#             */
-/*   Updated: 2023/12/05 12:04:41 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/07 11:28:05 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 size_t	ft_strlen(const char *s)
 {
 	size_t	index;
-
 	if (!s)
 		return (0);
 	index = 0;

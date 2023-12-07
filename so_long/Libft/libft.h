@@ -78,13 +78,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void	*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 char	*get_next_line(int fd);
-char	*ft_read(int fd, char *reserve);
-char	*ft_extraire_ligne(char *reserve);
-char	*ft_ligne_suivante(char *reserve);
-int ft_strchr_gnl(const char *s, char c);
-unsigned int    ft_strlen_gnl(const char *str);
-char    *ft_strdup_gnl(const char *s1);
-char    *ft_strjoin_gnl(char *s1, char const *s2);
-
+int	ft_index(const char *s, char c);
+unsigned int	ft_strlenn(const char *str);
+char	*ft_strdupp(const char *s1);
+char	*ft_strjoinn(char *s1, char const *s2);
 
 #endif

@@ -11,7 +11,7 @@ LIBMLX 		= $(MLX)/libmlx42.a
 FT			= Libft
 LIBFT		= $(FT)/libft.a
 
-SOURCE := so_long.c map.c
+SOURCE := so_long.c map.c affichage.c
 OBJ 	= $(SOURCE:.c=.o)
 
 all: $(NAME)

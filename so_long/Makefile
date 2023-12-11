@@ -11,7 +11,7 @@ LIBMLX 		= $(MLX)/libmlx42.a
 FT			= Libft
 LIBFT		= $(FT)/libft.a
 
-SOURCE := main.c map.c affichage.c key_hook.c
+SOURCE := main.c read_map.c load_image.c key_hook.c letter_to_png.c collectibles.c error.c
 OBJ 	= $(SOURCE:.c=.o)
 
 all: $(NAME)

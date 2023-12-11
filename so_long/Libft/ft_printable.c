@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 13:50:30 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/23 11:31:31 by brclemen         ###   ########.fr       */
+/*   Created: 2023/11/02 17:03:09 by brclemen          #+#    #+#             */
+/*   Updated: 2023/12/11 13:57:33 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_putchar(char c, size_t *index)
 {
-	int	index;
+	write(1, &c, 1);
+	(*index)++;
+}
 
-	index = 0;
-	if (s == NULL)
+void	ft_putpercent(size_t *index)
+{
+	ft_putchar('%', index);
+}
+
+void	ft_putstr(char *str, size_t *index)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
 	{
-		while (s[index])
-			index++;
-		return ((char *)&s[index]);
+		ft_putchar(str[i], index);
+		i++;
 	}
-	while (s[index] != '\0')
-	{
-		if (s[index] == (char)c)
-		{
-			return ((char *)&s[index]);
-		}
-		s++;
-	}
-	if (s[index] == (char)c)
-		return ((char *)&s[index]);
-	return (NULL);
+}
+
+void	ft_printstr(char *str, size_t *index)
+{
+	if (str == NULL)
+		ft_putstr("(null)", index);
+	else
+		ft_putstr(str, index);
 }

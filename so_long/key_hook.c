@@ -1,94 +1,98 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/11 14:56:35 by brclemen          #+#    #+#             */
+/*   Updated: 2023/12/11 16:42:08 by brclemen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	keyhook(mlx_key_data_t keydata, void *param)
 {
-    game_t *game = param;
+	t_game	*game;
 
-    // if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
-    //     mlx_close_window(param);
-
-    if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-        player_haut(game);
+	game = param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_window(game->mlx);
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		player_up(game);
 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-		player_bas(game);
+		player_down(game);
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-		player_gauche(game);
+		player_left(game);
 	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-		player_droite(game);
+		player_right(game);
 }
 
-void    player_haut(game_t *game)
+void	player_up(t_game *game)
 {
-	int hauteur;
-    int longueur;
+	int	hauteur;
+	int	longueur;
 
-    hauteur = game->player.player_hauteur;
-    longueur = game->player.player_longueur;
-    if (game->maps.map[hauteur - 1][longueur] == '1')
-        return ;
-    game->graph.personnage->instances[0].y -= 64;
-    game->player.player_hauteur--;
-    game->player.deplacement++;
-    printf("%d\n", game->player.deplacement);
-	printf("collectibles : %d\n", game->count_c);
-	collectibles(game, game->player.player_hauteur, longueur);
-	printf("Hauteur : %d Longueur : %d\n", game->player.player_hauteur, game->player.player_longueur);
+	hauteur = game->player.player_height;
+	longueur = game->player.player_lenght;
+	if (game->maps.map[hauteur - 1][longueur] == '1')
+		return ;
+	game->graph.person->instances[0].y -= 64;
+	game->player.player_height--;
+	game->player.moving++;
+	ft_printf("%d\n", game->player.moving);
+	collects(game, game->player.player_height, longueur);
 	ft_exit(game);
 }
 
-void    player_gauche(game_t *game)
+void	player_left(t_game *game)
 {
-	int hauteur;
-    int longueur;
+	int	hauteur;
+	int	longueur;
 
-    hauteur = game->player.player_hauteur;
-    longueur = game->player.player_longueur;
-    if (game->maps.map[hauteur][longueur - 1] == '1')
-        return ;
-    game->graph.personnage->instances[0].x -= 64;
-    game->player.player_longueur--;
-    game->player.deplacement++;
-    printf("%d\n", game->player.deplacement);
-	printf("collectibles : %d\n", game->count_c);
-	collectibles(game, hauteur, game->player.player_longueur);
-	printf("Hauteur : %d Longueur : %d\n", game->player.player_hauteur, game->player.player_longueur);
+	hauteur = game->player.player_height;
+	longueur = game->player.player_lenght;
+	if (game->maps.map[hauteur][longueur - 1] == '1')
+		return ;
+	game->graph.person->instances[0].x -= 64;
+	game->player.player_lenght--;
+	game->player.moving++;
+	ft_printf("%d\n", game->player.moving);
+	collects(game, hauteur, game->player.player_lenght);
 	ft_exit(game);
 }
 
-void    player_bas(game_t *game)
+void	player_down(t_game *game)
 {
-	int hauteur;
-    int longueur;
+	int	hauteur;
+	int	longueur;
 
-    hauteur = game->player.player_hauteur;
-    longueur = game->player.player_longueur;
-    if (game->maps.map[hauteur + 1][longueur] == '1')
-        return ;
-    game->graph.personnage->instances[0].y += 64;
-    game->player.player_hauteur++;
-    game->player.deplacement++;
-    printf("%d\n", game->player.deplacement);
-	printf("collectibles : %d\n", game->count_c);
-	collectibles(game, game->player.player_hauteur, longueur);
-	printf("Hauteur : %d Longueur : %d\n", game->player.player_hauteur, game->player.player_longueur);
+	hauteur = game->player.player_height;
+	longueur = game->player.player_lenght;
+	if (game->maps.map[hauteur + 1][longueur] == '1')
+		return ;
+	game->graph.person->instances[0].y += 64;
+	game->player.player_height++;
+	game->player.moving++;
+	ft_printf("%d\n", game->player.moving);
+	collects(game, game->player.player_height, longueur);
 	ft_exit(game);
 }
 
-void    player_droite(game_t *game)
+void	player_right(t_game *game)
 {
-	int hauteur;
-    int longueur;
+	int	hauteur;
+	int	longueur;
 
-    hauteur = game->player.player_hauteur;
-    longueur = game->player.player_longueur;
-    if (game->maps.map[hauteur][longueur + 1] == '1')
-        return ;
-    game->graph.personnage->instances[0].x += 64;
-    game->player.player_longueur++;
-    game->player.deplacement++;
-    printf("%d\n", game->player.deplacement);
-	printf("collectibles : %d\n", game->count_c);
-	collectibles(game, hauteur, game->player.player_longueur);
-	printf("Hauteur : %d Longueur : %d\n", game->player.player_hauteur, game->player.player_longueur);
+	hauteur = game->player.player_height;
+	longueur = game->player.player_lenght;
+	if (game->maps.map[hauteur][longueur + 1] == '1')
+		return ;
+	game->graph.person->instances[0].x += 64;
+	game->player.player_lenght++;
+	game->player.moving++;
+	ft_printf("%d\n", game->player.moving);
+	collects(game, hauteur, game->player.player_lenght);
 	ft_exit(game);
 }

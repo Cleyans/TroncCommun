@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:56:32 by brclemen          #+#    #+#             */
-/*   Updated: 2023/12/11 16:58:27 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:05:03 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	letter_to_png(t_game *game)
 		game->maps.count_lenght += 64;
 	}
 	map_error(game);
-	// error_rectangle(game);
+	error_rectangle(game);
+	one_all_around(game);
 }
 
 void	load_letter_p(t_game *game)

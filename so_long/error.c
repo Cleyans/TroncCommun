@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:56:25 by brclemen          #+#    #+#             */
-/*   Updated: 2023/12/12 14:28:07 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:23:57 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,68 +16,49 @@ void	map_error(t_game *game)
 {
 	if (game->maps.count_p != 1)
 	{
-		ft_printf("Votre map n'est pas valide, nombre \
-invalide de personnage.\n");
+		ft_printf("Your map are not available,\
+not the exact amount of player wished.\n");
 		mlx_close_window(game->mlx);
 	}
 	if (game->maps.count_e != 1)
 	{
-		ft_printf("Votre map n'est pas valide, nombre invalide de sortie\n");
+		ft_printf("Your map are not available,\
+not the exact amount of exit wished.\n");
 		mlx_close_window(game->mlx);
 	}
 	if (game->count_c < 1)
 	{
-		ft_printf("Votre map n'est pas valide, aucun collectibles trouvé\n");
+		ft_printf("Your map are not available,\
+you don't have enought colletibles\n");
 		mlx_close_window(game->mlx);
 	}
 }
 
-int strlen_new_line(char *str)
+void	error_rectangle(t_game *game)
 {
-	int index;
-	
-	index = 0;
-	while (str[index] && str[index] != '\n')
-		index++;
-	return (index);
-}
-
-void    error_rectangle(t_game *game)
-{
-
 	int	height;
 
 	height = 0;
-	while(height != game->maps.h)
+	while (height != game->maps.h)
 	{
 		if (height != game->maps.h - 1)
 		{
-			if (strlen_new_line(game->maps.map[height]) != strlen_new_line(game->maps.map[height + 1]))
+			if (strlen_new_line(game->maps.map[height])
+				!= strlen_new_line(game->maps.map[height + 1]))
 			{
-				ft_printf("Votre map n'est pas valide, elle n'est rectangle.\n");
+				ft_printf("Your map are not available, it is not rectangle.\n");
 				mlx_close_window(game->mlx);
 				break ;
 			}
 		}
-	height++;
+		height++;
 	}
-}
-
-int	strlen_verif_one(char *str)
-{
-	int index;
-	index = 0;
-	while (str[index] && str[index] == '1')
-		index++;
-	if (strlen_new_line(str) == index)
-		return (1);
-	return (0);
 }
 
 void	one_all_around(t_game *game)
 {
-	int height;
-	int max_lenght;
+	int	height;
+	int	max_lenght;
 
 	height = 1;
 	if (strlen_verif_one(game->maps.map[0]) != 1)
@@ -85,16 +66,16 @@ void	one_all_around(t_game *game)
 		verif_close(game);
 		return ;
 	}
-	if (strlen_verif_one(game->maps.map[game->maps.h - 1]) == 0)
+	if (strlen_verif_one(game->maps.map[game->maps.h - 1]) != 1)
 	{
 		verif_close(game);
 		return ;
 	}
-	max_lenght = 0;
+	max_lenght = strlen_new_line(game->maps.map[height]);
 	while (height != game->maps.h - 1)
 	{
-		max_lenght = strlen_new_line(game->maps.map[height]);
-		if (game->maps.map[height][0] == '1' && game->maps.map[height][max_lenght] == '1')
+		if (game->maps.map[height][0] != '1'
+			|| game->maps.map[height][max_lenght - 1] != '1')
 		{
 			verif_close(game);
 			return ;
@@ -102,9 +83,14 @@ void	one_all_around(t_game *game)
 		height++;
 	}
 }
+// void	verif_path(t_game *game)
+// {
+	
+// }
 
-void	verif_close(t_game *game)
+void	verif_errors_maps(t_game *game)
 {
-	ft_printf("Votre map n'est pas valide, elle n'est pas ferme\n");
-	mlx_close_window(game->mlx);
+	map_error(game);
+	error_rectangle(game);
+	one_all_around(game);
 }

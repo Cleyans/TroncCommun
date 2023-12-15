@@ -6,5 +6,5 @@ C_FLAGS = -fPIC   -D LODEPNG_NO_COMPILE_ENCODER -D LODEPNG_NO_COMPILE_ANCILLARY_
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/brclemen/Desktop/gitperso/so_long/minilibx/include 
+C_INCLUDES = -I/home/brclemen/gitperso/so_long/minilibx/include 
 

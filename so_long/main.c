@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:08:42 by brclemen          #+#    #+#             */
-/*   Updated: 2023/12/12 12:15:04 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:22:47 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,40 @@ static void	error(void)
 	exit(EXIT_FAILURE);
 }
 
-int32_t	main(void)
+void	free_map(t_game *game)
+{
+	int	height;
+
+	height = 0;
+	while (height < game->maps.h)
+	{
+		free(game->maps.map[height]);
+		height++;
+	}
+	free(game->maps.map);
+	mlx_delete_image(game->mlx, game->graph.background);
+	mlx_delete_texture(game->texture.background_texture);
+	mlx_delete_image(game->mlx, game->graph.person);
+	mlx_delete_texture(game->texture.person_texture);
+	mlx_delete_image(game->mlx, game->graph.collect);
+	mlx_delete_texture(game->texture.collect_texture);
+	mlx_delete_image(game->mlx, game->graph.exit);
+	mlx_delete_texture(game->texture.exit_texture);
+	mlx_delete_image(game->mlx, game->graph.walls);
+	mlx_delete_texture(game->texture.walls_texture);
+}
+
+int32_t	main(int argc, char **argv)
 {
 	t_game	game;
 
+	if (argc > 2)
+	{
+		ft_printf("You have more than two arguments.\n");
+		return (0);
+	}
 	var_ini(&game);
+	game.maps.chosen_file = argv[1];
 	read_map(&game);
 	game.maps.lenght = game.maps.count_lenght * 64;
 	game.maps.height = game.maps.count_height * 64;
@@ -55,6 +84,7 @@ int32_t	main(void)
 	letter_to_png(&game);
 	mlx_key_hook(game.mlx, keyhook, &game);
 	mlx_loop(game.mlx);
+	free_map(&game);
 	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }

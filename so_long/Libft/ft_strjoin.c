@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:37:17 by brclemen          #+#    #+#             */
-/*   Updated: 2023/10/30 10:59:01 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:06:49 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s2 != NULL)
 		ft_memcpy(result + ft_strlen(s1), s2, ft_strlen(s2));
 	result[total_len] = '\0';
+	free((char *)s1);
 	return (result);
 }

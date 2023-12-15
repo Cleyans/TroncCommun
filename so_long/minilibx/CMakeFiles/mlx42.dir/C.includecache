@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/brclemen/Desktop/gitperso/so_long/minilibx/mlx_frag_shader.c
+/home/brclemen/gitperso/so_long/minilibx/mlx_frag_shader.c
 MLX42/MLX42_Int.h
-/home/brclemen/Desktop/gitperso/so_long/minilibx/MLX42/MLX42_Int.h
+/home/brclemen/gitperso/so_long/minilibx/MLX42/MLX42_Int.h
 
-/home/brclemen/Desktop/gitperso/so_long/minilibx/mlx_vert_shader.c
+/home/brclemen/gitperso/so_long/minilibx/mlx_vert_shader.c
 MLX42/MLX42_Int.h
-/home/brclemen/Desktop/gitperso/so_long/minilibx/MLX42/MLX42_Int.h
+/home/brclemen/gitperso/so_long/minilibx/MLX42/MLX42_Int.h
 
 include/KHR/khrplatform.h
 stdint.h

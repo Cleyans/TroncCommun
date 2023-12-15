@@ -6,13 +6,13 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:17:50 by aymoulou          #+#    #+#             */
-/*   Updated: 2023/12/15 16:35:05 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:04:46 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*get_line(char *backup)
+char	*get_line(char *backup)
 {
 	int		len;
 	int		x;
@@ -38,7 +38,7 @@ static char	*get_line(char *backup)
 	return (line);
 }
 
-static char	*get_backup(char *backup)
+char	*get_backup(char *backup)
 {
 	char	*str;
 	int		start;
@@ -65,7 +65,7 @@ static char	*get_backup(char *backup)
 	return (str);
 }
 
-static char	*read_line(char *backup, int fd)
+char	*read_line(char *backup, int fd)
 {
 	int		byte;
 	char	*buff;

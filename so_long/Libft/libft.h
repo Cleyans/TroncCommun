@@ -94,13 +94,16 @@ int		ft_printf(const char *str, ...);
 
 // gnl
 
-char	*get_next_line(int fd);
 int	ft_index(const char *s, char c);
 unsigned int	ft_strlenn(const char *str);
+char	*get_next_line(int fd);
 char	*ft_strdupp(const char *s1);
 char	*ft_strjoinn(char *s1, char const *s2);
 char	*ft_read(int fd, char *reserve);
 char	*ft_extraire_ligne(char *reserve);
 char	*ft_ligne_suivante(char *reserve);
+char	*get_line(char *backup);
+char	*get_backup(char *backup);
+char	*read_line(char *backup, int fd);
 
 #endif

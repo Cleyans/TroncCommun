@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:18:31 by aymoulou          #+#    #+#             */
-/*   Updated: 2023/12/15 16:40:47 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:01:57 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_index(const char *s, char c)
 	return (-1);
 }
 
-unsigned int	t_strlenn(const char *str)
+unsigned int	ft_strlenn(const char *str)
 {
 	unsigned int	num;
 

@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:23:33 by brclemen          #+#    #+#             */
-/*   Updated: 2023/12/15 15:44:09 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:03:14 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	load_letter_1(t_game *game);
 void	one_all_around(t_game *game);
 void	verif_close(t_game *game);
 void	verif_errors_maps(t_game *game);
+void	verif_path(t_game *game);
+void	verif_collects(t_game *game, int height, int lenght, int *collect2, int *exit);
 
 int	strlen_verif_one(char *str);
 int	strlen_new_line(char *str);

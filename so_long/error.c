@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:56:25 by brclemen          #+#    #+#             */
-/*   Updated: 2023/12/15 13:23:57 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:08:31 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,95 @@ void	one_all_around(t_game *game)
 		height++;
 	}
 }
-// void	verif_path(t_game *game)
-// {
-	
-// }
+
+void	verif_path(t_game *game)
+{
+	int	height;
+	int lenght;
+	int	collect2;
+	int exit;
+
+	height = game->player.player_height;
+	lenght = game->player.player_lenght;
+	collect2 = game->count_c;
+	exit = game->exit;
+	while (1)
+	{
+		if (game->maps.map[height][lenght + 1 != '1'])
+		{
+			while (game->maps.map[height][lenght + 1] != '1')
+			{
+				lenght++;
+				verif_collects(game, height, lenght, &collect2, &exit); // add exit
+				game->maps.map[height][lenght] = '1';
+			}
+			verif_path(game);
+		}
+		else if (game->maps.map[height + 1][lenght] != '1')
+		{
+			while (game->maps.map[height + 1][lenght] != '1')
+			{
+				height++;
+				verif_collects(game, height, lenght, &collect2, &exit);
+				game->maps.map[height][lenght] = '1';
+			}
+			verif_path(game);
+		}
+		else if (game->maps.map[height][lenght - 1] != '1')
+		{
+			while (game->maps.map[height][lenght - 1] != '1')
+			{
+				lenght--;
+				verif_collects(game, height, lenght, &collect2, &exit);
+				game->maps.map[height][lenght] = '1';
+			}
+			verif_path(game);
+		}
+		else if (game->maps.map[height - 1][lenght] != '1')
+		{
+			while (game->maps.map[height - 1][lenght] != '1')
+			{
+				height--;
+				verif_collects(game, height, lenght, &collect2, &exit);
+				game->maps.map[height][lenght] = '1';
+			}
+			verif_path(game);
+		}
+		else
+			break;
+	}
+	if (collect2 == 0 && exit == 0)
+	{
+		ft_printf("The map can be played.\n");
+		return ;
+	}
+	else
+	{
+		ft_printf("The map cannot be played.\n");
+		return ;
+	}
+}
+
+void	verif_collects(t_game *game, int height, int lenght, int *collect2, int *exit)
+{
+	if (game->maps.map[height][lenght] == 'C')
+	{
+		collect2--;
+		return ;
+	}
+	else if (game->maps.map[height][lenght] == 'E')
+	{
+		exit--;
+		return ;
+	}
+	else 
+		return ;
+}
 
 void	verif_errors_maps(t_game *game)
 {
 	map_error(game);
 	error_rectangle(game);
 	one_all_around(game);
+	verif_path(game);
 }

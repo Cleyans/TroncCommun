@@ -6,7 +6,7 @@
 /*   By: brclemen <brclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:23:33 by brclemen          #+#    #+#             */
-/*   Updated: 2023/12/18 17:03:14 by brclemen         ###   ########.fr       */
+/*   Updated: 2023/12/21 13:28:51 by brclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct maps
 	char			**map;
 	char			*str;
 	char			*chosen_file;
+	char			**path;
+
 }	t_maps;
 
 typedef struct game
@@ -98,10 +100,14 @@ void	load_letter_1(t_game *game);
 void	one_all_around(t_game *game);
 void	verif_close(t_game *game);
 void	verif_errors_maps(t_game *game);
-void	verif_path(t_game *game);
-void	verif_collects(t_game *game, int height, int lenght, int *collect2, int *exit);
+void	free_mapcheck(t_game *game);
+void	init_mapcheck(t_game *game);
+int	map_checked(t_game *game, int y, int x);
+void	count_items(t_game *game, int y, int x);
+int	check_path(t_game *game, int y, int x);
 
 int	strlen_verif_one(char *str);
 int	strlen_new_line(char *str);
+
 
 #endif

@@ -1,0 +1,13 @@
+Open : permet d'ouvrir un fichier.
+Close : permet de le fermer une fois lu.
+read : permet de lire le fichier.
+free : permet de libérer l'espace utiliser.
+sterror : permet d'afficher un message d'erreur (flou).
+access : permet de voir les permissions accordé sur le fichier (si on peut le lire, écrire dedans, et l'exécuter)
+dup - dup2 : ça duplique un descripteur de fichier.
+execve() exécute le programme correspondant au fichier. Celui-ci doit être un exécutable binaire ou bien un script commençant par une ligne.
+La fonction exit permet de mettre fin au programme en spécifiant un code de retour. Ce code de retour, passé en paramètre de la fonction exit, permet de spécifier comment le programme se termine.
+Fork() : permet de crée un nouveau process dans linux et unix systèle (flou)
+pipe() crée un tube, un canal unidirectionnel de données qui peut être utilisé pour la communication entre processus. Le tableau pipefd est utilisé pour renvoyé deux descripteurs de fichier faisant référence aux extrémités du tube. pipefd[0] fait référence à l'extrémité de lecture du tube. pipefd[1] fait référence à l'extrémité d'écriture du tube. Les données écrites sur l'extrémité d'écriture du tube sont mises en mémoire tampon par le noyau jusqu'à ce qu'elles soient lues sur l'extrémité de lecture du tube.
+unlink () supprime filename.
+wait - waitpid() : Tous ces appels système sont utilisés pour attendre le changement d'état du fils d'un processus appelant, et pour obtenir des informations sur le fils dont l'état a changé. Un changement d'état peut être : le fils est terminé ; le fils a été interrompu par un signal ; ou le fils a été relancé par un signal. Dans le cas de la fin d'un processus, la réalisation d'un wait() permet au système de libérer les ressources associées au fils ; si un wait() n'est pas effectué, le fils qui s'est terminé reste dans l'état de « zombie »

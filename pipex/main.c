@@ -1,48 +1,82 @@
 #include "pipex.h"
 #include <stdio.h>
 #include <string.h>
+#include <fcntl.h>  
 
 
 //\\wsl.localhost\Ubuntu\usr\bin
 
-void	ini_var(t_pipex *pipex)
+// void	ini_var(t_pipex *pipex)
+// {
+// 	pipex->in_fd = 0;
+// 	pipex->out_fd = 0;
+// 	pipex->p_id = 0;
+// }
+
+void	cmd_exec(char *cmd, char **env)
 {
-	pipex->in_fd = 0;
-	pipex->out_fd = 0;
-	pipex->p_id = 0;
+	char split_cmd = ft_split(cmd, ' ');
 }
 
-void	check_args(t_pipex *pipex, char *args[])
+void	p_parent(char *argv[], char **env, int p_fd)
 {
-	int index;
-	int	j;
-	char	*path;
-	char *path_con;
+	int	fd;
 
-	path = "usr/bin/";
-	path_con = malloc(sizeof(char *) + ft_strlen(path) + ft_strlen(args[2]));
-	printf("%s args début\n", args[2]);
-	printf("%s path début\n", path);
-	execve("usr/bin/", args, NULL);
-	path_con = ft_strjoin_pipex(path, args[2]);
-	printf("%s\n", path_con);
+	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (fd == -1)
+		exit(-1)
+	dup2(fd, 1);
+	dup2(p_fd[0], 0);
+	close(p_fd[1]);
+	cmd_exec(); //argv3
 }
 
-int	main(int argc, char *argv[])
+void	p_child(char *argv[], char **env, int p_fd)
 {
-	t_pipex pipex;
-	ini_var(&pipex);
-  //  argv 1 & 2 sont des commandes shell
-	int	fd[2]; // [0] == lire, [1] == écrire
+	int	fd;
+
+	fd = open(argv[1], O_RDONLY, 0777);
+	if (fd == -1)
+		exit(-1);
+	dup2(fd, 0);
+	dup2(p_fd[1], 1);
+	close(p_fd[0]);
+	cmd_exec(); // argv2
+}
+
+
+
+int	main(int argc, char *argv[], char **env)
+{
+	pid_t	p_id;
+	int	p_fd[2]; // [0] == lire, [1] == écrire
 	if (argc != 5)
 		return (1);
-	if (pipe(fd) == -1)
+	if (pipe(p_fd) == -1)
 		exit(-1);
 	pipex.p_id = fork();
 	if (pipex.p_id == -1)
 		exit(-1);
-	check_args(&pipex, argv);
+	if (pid == 0)
+		p_child()
+		
+
 }
+// void	check_args(t_pipex *pipex, char *args[])
+// {
+// 	int index;
+// 	int	j;
+// 	char	*path;
+// 	char *path_con;
+
+// 	path = "usr/bin/";
+// 	path_con = malloc(sizeof(char *) + ft_strlen(path) + ft_strlen(args[2]));
+// 	printf("%s args début\n", args[2]);
+// 	printf("%s path début\n", path);
+// 	execve("usr/bin/", args, NULL);
+// 	path_con = ft_strjoin_pipex(path, args[2]);
+// 	printf("%s\n", path_con);
+// }
 
 // int	main(int argc, char *argv[])
 // {
